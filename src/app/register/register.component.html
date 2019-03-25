@@ -1,0 +1,38 @@
+<div class="col-md-12">
+  <h4 class="mb-3">Register Yourself</h4>
+  <p class="alert alert-danger" *ngIf="password.value !== rpassword.value">
+    Password Doesn't Match
+  </p>
+  <p class="alert alert-success" *ngIf="registered">
+    User Registered Successfully! Goto <a routerLink="/login">Login</a>
+    {{ regForm.reset() }}
+  </p>
+  <form class="needs-validation" (ngSubmit)="onFormSubmit(regForm)" #regForm="ngForm">
+    <div class="row">
+      <div class="col-md-12">
+        <label for="name">Full Name</label>
+        <input type="text" name="name" #name ngModel class="form-control" id="name" placeholder="Full Name" required />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email">Email <span class="text-muted">(Optional)</span></label>
+      <input type="email" class="form-control" id="email" name="email" #email ngModel placeholder="you@example.com"
+        required />
+    </div>
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" #password ngModel id="password" autocomplete="false"
+        required />
+    </div>
+    <div class="mb-3">
+      <label for="rpassword">Re-Password</label>
+      <input type="password" class="form-control" name="rpassword" #rpassword ngModel id="rpassword" autocomplete="false"
+        required />
+    </div>
+    <hr class="mb-4" />
+    <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="regForm.invalid || password.value !== rpassword.value">
+      Register
+    </button>
+  </form>
+</div>
